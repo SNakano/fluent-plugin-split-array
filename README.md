@@ -2,6 +2,8 @@
 
 Fluent filter plugin to split array
 
+[![Build Status](https://travis-ci.org/SNakano/fluent-plugin-split-array.svg)](https://travis-ci.org/SNakano/fluent-plugin-split-array)
+
 ## install
 
 ```
@@ -53,4 +55,3 @@ Monitoring RabbitMQ all queues status
   type stdout
 </match>
 ```
-
