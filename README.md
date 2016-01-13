@@ -3,7 +3,7 @@
 Fluent filter plugin to split array
 
 [![Build Status](https://travis-ci.org/SNakano/fluent-plugin-split-array.svg)](https://travis-ci.org/SNakano/fluent-plugin-split-array)
-[![Gem](https://img.shields.io/gem/dt/fluent-plugin-split-array.svg)]()
+[![Gem](https://img.shields.io/gem/dt/fluent-plugin-split-array.svg)](https://rubygems.org/gems/fluent-plugin-split-array)
 
 
 ## install
