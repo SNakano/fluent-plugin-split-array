@@ -1,3 +1,4 @@
+require 'bundler/setup'
 require 'test/unit'
 require 'fluent/log'
 require 'fluent/test'
@@ -10,8 +11,8 @@ class RubyFilterTest < Test::Unit::TestCase
     Fluent::Test.setup
   end
 
-  def emit(msg)
-    d = Test::FilterTestDriver.new(SplitArrayFilter).configure('', true)
+  def emit(msg, conf='')
+    d = Test::FilterTestDriver.new(SplitArrayFilter).configure(conf, true)
     d.run {
       d.emit(msg, Fluent::Engine.now)
     }.filtered
@@ -27,9 +28,22 @@ class RubyFilterTest < Test::Unit::TestCase
       end
     end
     test 'execute to hash' do
-      msg = {'a' => 'b', 'c' => 'd'} 
+      msg = {'a' => 'b', 'c' => 'd'}
       es  = emit(msg)
       assert_equal(msg, es.first[1])
+    end
+    test 'execute to array with split_key' do
+      msg = {'key1' => [{'a' => 'b'}, {'a' => 'c'}]}
+      es  = emit(msg, conf='split_key key1')
+      assert_equal(msg['key1'].count, es.count)
+      es.each_with_index do |e, i|
+        assert_equal(msg['key1'][i], e[1])
+      end
+    end
+    test 'execute to hash with split_key' do
+      msg = {'key1' => {'a' => 'b', 'c' => 'd'}}
+      es  = emit(msg, conf='split_key key1')
+      assert_equal(msg['key1'], es.first[1])
     end
   end
 end
