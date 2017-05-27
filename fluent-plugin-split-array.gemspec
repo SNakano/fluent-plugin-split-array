@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = "fluent-plugin-split-array"
-  s.version       = "0.0.1"
+  s.version       = "0.0.2"
   s.licenses      = ["MIT"]
   s.summary       = "Fluentd filter plugin to split array"
   s.description   = s.summary
