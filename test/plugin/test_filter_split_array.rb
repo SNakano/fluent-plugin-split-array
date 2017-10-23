@@ -2,6 +2,7 @@ require 'bundler/setup'
 require 'test/unit'
 require 'fluent/log'
 require 'fluent/test'
+require 'fluent/test/driver/filter'
 require 'fluent/plugin/filter_split_array'
 
 class RubyFilterTest < Test::Unit::TestCase
@@ -12,10 +13,11 @@ class RubyFilterTest < Test::Unit::TestCase
   end
 
   def emit(msg, conf='')
-    d = Test::FilterTestDriver.new(SplitArrayFilter).configure(conf, true)
-    d.run {
-      d.emit(msg, Fluent::Engine.now)
-    }.filtered
+    d = Test::Driver::Filter.new(Plugin::SplitArrayFilter).configure(conf)
+    d.run(default_tag: 'test') {
+      d.feed(msg)
+    }
+    d.filtered
   end
 
   sub_test_case 'filter' do
@@ -24,7 +26,7 @@ class RubyFilterTest < Test::Unit::TestCase
       es  = emit(msg)
       assert_equal(msg.count, es.count)
       es.each_with_index do |e, i|
-        assert_equal(msg[i], e[1])
+        assert_equal(msg[i], e[0])
       end
     end
     test 'execute to hash' do
