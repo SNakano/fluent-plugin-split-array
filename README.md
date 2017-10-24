@@ -12,6 +12,13 @@ Fluent filter plugin to split array
 gem install fluent-plugin-split-array
 ```
 
+### Requirements
+
+| fluent-plugin-script | fluentd    |
+|----------------------|------------|
+| >= 0.1.0             | >= v0.14.0 |
+| <  0.0.2             | <  v0.14.0 |
+
 ## Configuration Example
 
 ```
