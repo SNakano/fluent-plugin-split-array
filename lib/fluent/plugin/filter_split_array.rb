@@ -1,4 +1,6 @@
-module Fluent
+require 'fluent/plugin/filter'
+
+module Fluent::Plugin
   class SplitArrayFilter < Filter
     Fluent::Plugin.register_filter('split_array', self)
 
@@ -6,7 +8,7 @@ module Fluent
     config_param :split_key, :string, default: nil
 
     def filter_stream(tag, es)
-      new_es = MultiEventStream.new
+      new_es = Fluent::MultiEventStream.new
       es.each {|time, record|
         target_record = @split_key.nil? ? record : record[@split_key] || {}
         split(time, target_record, new_es)
