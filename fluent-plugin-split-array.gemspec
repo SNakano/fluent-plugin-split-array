@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = "fluent-plugin-split-array"
-  s.version       = "0.1.0"
+  s.version       = "0.1.1"
   s.licenses      = ["MIT"]
   s.summary       = "Fluentd filter plugin to split array"
   s.description   = s.summary
@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   s.add_runtime_dependency "fluentd", [">= 0.14.0", "< 2"]
-  s.add_development_dependency "rake", "~> 10.4"
+  s.add_development_dependency "rake", ">= 12.3.3"
   s.add_development_dependency "test-unit", "~> 3.1"
 end
