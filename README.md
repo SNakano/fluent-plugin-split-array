@@ -21,13 +21,13 @@ gem install fluent-plugin-split-array
 
 ## Configuration Example
 
+## Example 1
+
 ```
 <filter foo.bar.*>
   type split_array
 </filter>
 ```
-
-## Example 1
 
 ### input
 
@@ -43,6 +43,28 @@ gem install fluent-plugin-split-array
 ```
 
 ## Example 2
+
+```
+<filter foo.bar.*>
+  type split_array
+  split_key records
+</filter>
+```
+
+### input
+
+```
+{"requestId":"034f","timestamp":1578090901599,"records":[{"data":"Log entry 1"},{"data":"Log entry 2"}]}
+```
+
+### output
+
+```
+{'data' => 'Log entry 1'}
+{'data' => 'Log entry 2'}
+```
+
+## Example 3
 
 ### fluent.conf
 
